@@ -1,6 +1,7 @@
 {
     "name": "danil/blogstoune",
     "require": {
+        "ext-pdo": "*",
         "vlucas/phpdotenv": "^5.6"
     },
     "require-dev": {
@@ -10,7 +11,8 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/src/",
-            "APP\\Helpers\\": "app/helpers/"
+            "APP\\Helpers\\": "app/helpers/",
+            "Config\\": "config"
         }
     }
 }

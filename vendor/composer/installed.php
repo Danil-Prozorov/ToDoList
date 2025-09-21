@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'danil/blogstoune',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '8a95bb9d6b5fb1a8376cf370c8bb7f268a876386',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -47,9 +47,9 @@
             'dev_requirement' => true,
         ),
         'danil/blogstoune' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '8a95bb9d6b5fb1a8376cf370c8bb7f268a876386',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

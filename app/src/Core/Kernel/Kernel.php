@@ -3,9 +3,14 @@
 namespace App\Core\Kernel;
 
 use Dotenv\Dotenv;
+use App\Core\Database\Database;
+use Config\Config;
 
 class Kernel
 {
+    private static $config = [];
+    private $db = null;
+
     public function run()
     {
         self::initBase();
@@ -13,7 +18,7 @@ class Kernel
         self::initDatabase();
     }
 
-    private function initBase()
+    private function initBase(): void
     {
         $dotenv = Dotenv::createImmutable("../");
         $dotenv->load();
@@ -26,6 +31,7 @@ class Kernel
 
     private function initDatabase()
     {
-
+        self::$config['database'] = (new Config())->getConfig();
+        $this->db = (new Database(self::$config['database']['database']))->getConnection();
     }
 }
