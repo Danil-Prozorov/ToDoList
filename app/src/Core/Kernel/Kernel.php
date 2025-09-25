@@ -4,12 +4,9 @@ namespace App\Core\Kernel;
 
 use Dotenv\Dotenv;
 use App\Core\Database\Database;
-use Config\Config;
-
+use PDOException;
 class Kernel
 {
-    private static $config = [];
-    private $db = null;
 
     public function run()
     {
@@ -31,7 +28,11 @@ class Kernel
 
     private function initDatabase()
     {
-        self::$config['database'] = (new Config())->getConfig();
-        $this->db = (new Database(self::$config['database']['database']))->getConnection();
+        try{
+            (new Database())->getConnection();
+        }catch (PDOException $e){
+            throw new PDOException("Database connection failed".$e->getMessage());
+        }
+
     }
 }
