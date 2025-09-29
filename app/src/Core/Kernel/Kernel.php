@@ -4,6 +4,7 @@ namespace App\Core\Kernel;
 
 use Dotenv\Dotenv;
 use App\Core\Database\Database;
+use PDO;
 use PDOException;
 class Kernel
 {
@@ -26,10 +27,10 @@ class Kernel
 
     }
 
-    private function initDatabase()
+    private function initDatabase(): PDO
     {
         try{
-            (new Database())->getConnection();
+            return (new Database())->getConnection();
         }catch (PDOException $e){
             throw new PDOException("Database connection failed".$e->getMessage());
         }
