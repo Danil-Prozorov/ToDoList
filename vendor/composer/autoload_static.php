@@ -53,8 +53,10 @@ class ComposerStaticInit994d93b3012720bc850a23f8761dfaf6
         'P' => 
         array (
             'Psr\\Log\\' => 8,
+            'Psr\\Http\\Message\\' => 17,
             'Psr\\EventDispatcher\\' => 20,
             'Psr\\Container\\' => 14,
+            'Predis\\' => 7,
             'PhpParser\\' => 10,
             'PhpOption\\' => 10,
             'PhpCsFixer\\' => 11,
@@ -86,8 +88,9 @@ class ComposerStaticInit994d93b3012720bc850a23f8761dfaf6
         ),
         'A' => 
         array (
+            'App\\Helpers\\' => 12,
+            'App\\Core\\Http\\' => 14,
             'App\\' => 4,
-            'APP\\Helpers\\' => 12,
         ),
     );
 
@@ -188,6 +191,10 @@ class ComposerStaticInit994d93b3012720bc850a23f8761dfaf6
         array (
             0 => __DIR__ . '/..' . '/psr/log/src',
         ),
+        'Psr\\Http\\Message\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
         'Psr\\EventDispatcher\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/event-dispatcher/src',
@@ -195,6 +202,10 @@ class ComposerStaticInit994d93b3012720bc850a23f8761dfaf6
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'Predis\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/predis/predis/src',
         ),
         'PhpParser\\' => 
         array (
@@ -248,13 +259,27 @@ class ComposerStaticInit994d93b3012720bc850a23f8761dfaf6
         array (
             0 => __DIR__ . '/..' . '/clue/ndjson-react/src',
         ),
+        'App\\Helpers\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/helpers',
+        ),
+        'App\\Core\\Http\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/src/Core/Http',
+        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app/src',
         ),
-        'APP\\Helpers\\' => 
+    );
+
+    public static $prefixesPsr0 = array (
+        'R' => 
         array (
-            0 => __DIR__ . '/../..' . '/app/helpers',
+            'Resque' => 
+            array (
+                0 => __DIR__ . '/..' . '/vend/resque/lib',
+            ),
         ),
     );
 
@@ -1501,6 +1526,7 @@ class ComposerStaticInit994d93b3012720bc850a23f8761dfaf6
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit994d93b3012720bc850a23f8761dfaf6::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit994d93b3012720bc850a23f8761dfaf6::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit994d93b3012720bc850a23f8761dfaf6::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit994d93b3012720bc850a23f8761dfaf6::$classMap;
 
         }, null, ClassLoader::class);
