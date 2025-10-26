@@ -6,4 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Resque' => array($vendorDir . '/vend/resque/lib'),
 );
