@@ -8,7 +8,7 @@ class MiddlewarePipeline
 {
     private $middlewares = [];
 
-    public function handle($request,$middleware)
+    public function handle($request, $middleware)
     {
         $this->addMiddleware($middleware);
 
@@ -25,9 +25,9 @@ class MiddlewarePipeline
         return $next($request);
     }
 
-    private function addMiddleware($middlewares) : void
+    private function addMiddleware($middlewares): void
     {
-        foreach($middlewares as $middleware){
+        foreach ($middlewares as $middleware) {
             $this->middlewares[] = $middleware;
         }
     }

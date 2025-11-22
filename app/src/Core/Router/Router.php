@@ -29,11 +29,11 @@ class Router
             $this->route404();
         }
 
-        if(count($matchRoute['data']) >= 4 && !empty($matchRoute['data'][3])){
-            (new MiddlewarePipeline())->handle($this->request,$matchRoute['data'][3]);
+        if (count($matchRoute['data']) >= 4 && !empty($matchRoute['data'][3])) {
+            (new MiddlewarePipeline())->handle($this->request, $matchRoute['data'][3]);
         }
 
-        if(!empty($matchRoute['data'][0])){
+        if (!empty($matchRoute['data'][0])) {
             $this->url_params = $this->getUrlParams($current, $matchRoute['data'][0]);
         }
     }
@@ -82,7 +82,7 @@ class Router
         return '#^' . $pattern . '$#';
     }
 
-    private function getUrlParams($url,$pattern) : array
+    private function getUrlParams($url, $pattern): array
     {
         return array_values(array_diff(explode('/', $url), explode('/', $pattern)));
     }
