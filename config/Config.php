@@ -7,6 +7,9 @@ class Config
     public function getConfig(): array
     {
         return [
+            'general' => [
+                'HOST' => $_ENV['HOST'],
+            ],
             'database' => [
                 'DB_HOST' => $_ENV['DATABASE_HOST'],
                 'DB_TYPE' => $_ENV['DATABASE_TYPE'],
