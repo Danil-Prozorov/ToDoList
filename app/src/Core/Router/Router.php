@@ -7,22 +7,34 @@ use App\Core\Http\Request;
 use Config\Config;
 use Config\Routlist;
 use App\Core\Router\Middleware\Interfaces\MiddlewareInterface;
+use App\Core\Router\Middleware\MiddlewarePipeline;
 
 class Router
 {
     private $routes;
+    private $request;
+    private $url_params;
 
     public function __construct()
     {
         $this->routes = (new Routlist())->getRouteList();
+        $this->request = new Request();
     }
 
-    public function get($current)
+    public function get($current): void
     {
         $matchRoute = $this->matchRoute($current, 'get');
 
         if (!$matchRoute) {
             $this->route404();
+        }
+
+        if(count($matchRoute['data']) >= 4 && !empty($matchRoute['data'][3])){
+            (new MiddlewarePipeline())->handle($this->request,$matchRoute['data'][3]);
+        }
+
+        if(!empty($matchRoute['data'][0])){
+            $this->url_params = $this->getUrlParams($current, $matchRoute['data'][0]);
         }
     }
 
@@ -49,7 +61,6 @@ class Router
         foreach ($routes as $route => $data) {
             $pattern = $this->convertRouteToPattern($route);
 
-
             if (preg_match($pattern, $url, $matches)) {
                 return [
                   'route' => $url,
@@ -63,7 +74,7 @@ class Router
 
     }
 
-    private function convertRouteToPattern($route)
+    private function convertRouteToPattern($route): string
     {
         $pattern = str_replace('/', '\/', $route);
         $pattern = preg_replace('/\{(\w+)\}/', '(\w+)', $pattern);
@@ -71,7 +82,12 @@ class Router
         return '#^' . $pattern . '$#';
     }
 
-    public function redirect($to)
+    private function getUrlParams($url,$pattern) : array
+    {
+        return array_values(array_diff(explode('/', $url), explode('/', $pattern)));
+    }
+
+    public function redirect($to): void
     {
         $host = ((new Config())->getConfig())['general']['HOST'];
 
