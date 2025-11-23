@@ -19,7 +19,7 @@ class Database
         self::initConnect($this->config['dsn'], $this->config['user_db']);
     }
 
-    public function getConnection()
+    public function getConnection(): PDO
     {
 
         try {
@@ -30,6 +30,29 @@ class Database
 
     }
 
+    public function createTable(string $table, array $fieldList): void
+    {
+        try {
+            $columns = implode(', ', $fieldList);
+
+            $query = "CREATE TABLE IF NOT EXISTS ".$table." (".$columns.")";
+            $query = $this->connection->prepare($query);
+
+            $query->execte();
+        } catch (PDOException $e) {
+            throw new PDOException("Table already exists: ".$table);
+        }
+    }
+
+    public function dropTable(string $table): void
+    {
+        try {
+            $this->connection->exec("DROP TABLE IF EXISTS ".$table);
+        } catch (PDOException $e) {
+            throw new PDOException("Table already down: ".$table);
+        }
+    }
+
     private function initConnect(string $connection, $login): void
     {
         try {
@@ -37,5 +60,10 @@ class Database
         } catch (PDOException $e) {
             throw new PDOException("Connection failed: ".$e->getMessage());
         }
+    }
+
+    public function query(string $query)
+    {
+
     }
 }
