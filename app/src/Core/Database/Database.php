@@ -30,6 +30,30 @@ class Database
 
     }
 
+    public function createTable(string $table,array $fields): void
+    {
+        try{
+            $fields = implode(", ",$fields);
+            $query = "CREATE TABLE IF NOT EXISTS ".$table." (".$fields.")";
+            $query = $this->connection->prepare($query);
+
+            $query->execute();
+        }catch (PDOException $e){
+            throw new PDOException("Table already exist: ".$e->getMessage());
+        }
+
+    }
+
+    public function dropTable(string $table): void
+    {
+        try {
+            $query = "DROP TABLE IF EXISTS ".$table;
+            $this->connection->execute($query);
+        }catch (PDOException $e){
+            throw new PDOException("Table can not be droped: ".$e->getMessage());
+        }
+    }
+
     private function initConnect(string $connection, $login): void
     {
         try {

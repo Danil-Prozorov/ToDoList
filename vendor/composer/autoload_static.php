@@ -61,6 +61,10 @@ class ComposerStaticInit994d93b3012720bc850a23f8761dfaf6
             'PhpOption\\' => 10,
             'PhpCsFixer\\' => 11,
         ),
+        'M' => 
+        array (
+            'Migrations\\' => 11,
+        ),
         'G' => 
         array (
             'GrahamCampbell\\ResultType\\' => 26,
@@ -218,6 +222,10 @@ class ComposerStaticInit994d93b3012720bc850a23f8761dfaf6
         'PhpCsFixer\\' => 
         array (
             0 => __DIR__ . '/..' . '/friendsofphp/php-cs-fixer/src',
+        ),
+        'Migrations\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/migrations',
         ),
         'GrahamCampbell\\ResultType\\' => 
         array (
