@@ -54,6 +54,28 @@ class Database
         }
     }
 
+    public function query(string $query,$params = []): Database
+    {
+        try{
+            return $this->makeQuery($query,$params);
+        }catch (PDOException $e){
+            throw new PDOException("Query can not be executed: ".$e->getMessage());
+        }
+    }
+
+    private function makeQuery(string $query,array $params = []): Database
+    {
+        if(!empty($params)){
+            $sql = $this->connection->prepare($query);
+            $sql->execute($params);
+
+            return $sql;
+        }
+
+        $sql =$this->connection->query($query);
+        return $sql;
+    }
+
     private function initConnect(string $connection, $login): void
     {
         try {
